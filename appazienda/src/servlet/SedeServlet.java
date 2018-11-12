@@ -34,7 +34,7 @@ public class SedeServlet extends HttpServlet {
 			String nomesede = request.getParameter("nomesede");
 			String indirizzo = request.getParameter("indirizzo");
 			String citta = request.getParameter("citta");
-			//abello
+			//siamo sicuri
 			
 			
 		}
