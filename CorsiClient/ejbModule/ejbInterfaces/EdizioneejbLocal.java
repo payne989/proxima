@@ -24,5 +24,5 @@ public interface EdizioneejbLocal {
 	 
 	 public EdizioneDTO selectEdizioneById (int id);
 	 
-	 public ArrayList<EdizioneDTO> selectEdizioneByIdEdiz ();
+	 public ArrayList<EdizioneDTO> selectAllEdizione ();
 }

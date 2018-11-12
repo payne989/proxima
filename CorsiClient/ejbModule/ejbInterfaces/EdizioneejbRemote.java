@@ -25,5 +25,5 @@ public boolean insertEdizione(int idCorso,int idSede, int idDocente, Date dataIn
 	 
 	 public EdizioneDTO selectEdizioneById (int id);
 	 
-	 public ArrayList<EdizioneDTO> selectEdizioneByIdEdiz ();
+	 public ArrayList<EdizioneDTO> selectAllEdizione ();
 }

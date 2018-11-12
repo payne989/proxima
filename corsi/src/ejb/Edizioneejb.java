@@ -54,7 +54,7 @@ public class Edizioneejb implements EdizioneejbRemote, EdizioneejbLocal {
     	return Converter.convertEdizione(EdizioneDao.selectEdizioneById(id));
     }
 
-    public ArrayList<EdizioneDTO> selectEdizioneByIdEdiz () {
+    public ArrayList<EdizioneDTO> selectAllEdizione() {
     	
     	return Converter.convertEdizioneList(EdizioneDao.selectAllEdizione());
     }
