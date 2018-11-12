@@ -35,6 +35,7 @@ public class CorsiServlet extends HttpServlet {
 			String nome = request.getParameter("nome");
 
 			corsiejb.insertCorso(nome);
+			
 		} else if (funzione.equals("cercaid")) {
 
 			int id = Integer.parseInt(request.getParameter("id"));
@@ -48,6 +49,13 @@ public class CorsiServlet extends HttpServlet {
 			String nome = request.getParameter("nome");
 			ArrayList<CorsoDTO> corList = corsiejb.selectCorsoByNome(nome);
 
+			request.setAttribute("corso", corList);
+		}
+		
+		else if (funzione.equals("cercacorsi")) {
+			
+			ArrayList<CorsoDTO> corList = corsiejb.selectAllCorso();
+			
 			request.setAttribute("corso", corList);
 		}
 
