@@ -1,0 +1,79 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+
+import model.Movimento;
+
+public class MovimentoDao {
+
+	// public void connect() throws NamingException, SQLException {
+	//
+	// }
+
+	public static Movimento creaMovimento (int idMov, int idTipo, int idConto, double importo, Date data) throws SQLException, NamingException {
+
+		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/MYDSSQL")).getConnection();
+		
+		Movimento mov = new Movimento();
+
+		if (idTipo == 1) {
+
+			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
+
+			PreparedStatement preparedStatement = con.prepareStatement(qry);
+
+			preparedStatement.setInt(1, mov.getIdtipo());
+			preparedStatement.setInt(2, mov.getIdconto());
+			preparedStatement.setDouble(3, mov.getImporto());
+			preparedStatement.setDate(4, mov.getData());
+
+			preparedStatement.executeUpdate();
+			
+			
+			ContoDao.modificaConto(idConto, importo);
+
+			System.out.println("Record is created into movimento chart!");
+			System.out.println("Saldo Updated!");
+			}
+		
+		else if (idTipo == 2) {
+			
+			String qry = "INSERT INTO movimento	(idtipo, idconto, importo, data) VALUES (?,?,?,?)";
+
+			PreparedStatement preparedStatement = con.prepareStatement(qry);
+
+			preparedStatement.setInt(1, mov.getIdtipo());
+			preparedStatement.setInt(2, mov.getIdconto());
+			preparedStatement.setDouble(3, mov.getImporto());
+			preparedStatement.setDate(4, mov.getData());
+
+			preparedStatement.executeUpdate();
+			
+			
+			ContoDao.modificaConto(idConto, importo);
+
+			System.out.println("Record is created into movimento chart!");
+			System.out.println("Saldo Updated!");
+			}
+			return mov;
+		}
+		
+			
+		
+			
+			
+
+
+
+	
+}
+
+

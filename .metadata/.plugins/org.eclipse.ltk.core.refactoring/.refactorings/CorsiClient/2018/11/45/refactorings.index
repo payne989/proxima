@@ -1,0 +1,20 @@
+1541520898925	Delete element
+1541522457920	Delete element
+1541522483763	Rename type 'Docente'
+1541522505050	Rename type 'Edizione'
+1541522513663	Rename type 'Frequenze'
+1541522524010	Rename type 'Sede'
+1541605425800	Delete elements
+1541607684490	Copy compilation units
+1541608210542	Copy compilation units
+1541774655008	Rename package 'ejb'
+1541774935130	Rename type 'Corso_ejbLocal'
+1541774938435	Rename type 'Corso_ejbRemote'
+1541774941389	Rename type 'Docente_ejbLocal'
+1541774944942	Rename type 'Docente_ejbRemote'
+1541774948042	Rename type 'Edizione_ejbLocal'
+1541774951215	Rename type 'Edizione_ejbRemote'
+1541774955188	Rename type 'Frequenze_ejbLocal'
+1541774958473	Rename type 'Frequenze_ejbRemote'
+1541774961242	Rename type 'Sede_ejbLocal'
+1541774964046	Rename type 'Sede_ejbRemote'

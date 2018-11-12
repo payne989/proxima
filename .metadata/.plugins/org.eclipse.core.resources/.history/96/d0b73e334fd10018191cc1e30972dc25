@@ -1,0 +1,96 @@
+package servlet;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.ImpiegatoDao;
+import model.Impiegato;
+
+/**
+ * Servlet implementation class ImpiegatoServlet
+ */
+@WebServlet("/ImpiegatoServlet")
+public class ImpiegatoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Default constructor.
+	 */
+	public ImpiegatoServlet() {
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		String funzione = request.getParameter("funzione");
+
+		if (funzione.equals("inserisci")) {
+
+			String cf = request.getParameter("codicefiscale");
+			String nome = request.getParameter("nome");
+			String cognome = request.getParameter("cognome");
+
+			Impiegato imp = new Impiegato(0, cf, nome, cognome);
+
+			try {
+				ImpiegatoDao.insert(imp);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		else if (funzione.equals("cerca")) {
+
+			int id = Integer.parseInt(request.getParameter("id"));
+			ImpiegatoDao.researchById(id);
+		}
+
+		else if (funzione.equals("cancella")) {
+
+			int id = Integer.parseInt(request.getParameter("id"));
+			try {
+				ImpiegatoDao.delete(id);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		else if (funzione.equals("aggiorna"))
+
+		{
+
+			int id = Integer.parseInt(request.getParameter("id"));
+			String cf = request.getParameter("codicefiscale");
+			String nome = request.getParameter("nome");
+			String cognome = request.getParameter("cognome");
+
+			try {
+				ImpiegatoDao.update(id, cf, nome, cognome);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,20 @@
+package ejb;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class Frequenze_ejb
+ */
+@Stateless
+@LocalBean
+public class Frequenze_ejb implements Frequenze_ejbRemote, Frequenze_ejbLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public Frequenze_ejb() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

@@ -1,0 +1,192 @@
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-09 15:32:06.618
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-09 15:32:07.698
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-09 15:32:13.463
+!MESSAGE Server Startup Succeeded
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 13:29:43.856
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 13:29:45.588
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 13:29:51.654
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 0 2018-11-12 13:53:53.376
+!MESSAGE Module appazienda on Gino the Immortal not yet fully deployed. Waiting...
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 0 2018-11-12 13:54:13.393
+!MESSAGE Module appazienda on Gino the Immortal still not ready to be shown in browser. Aborting delay.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 13:54:41.249
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 13:54:41.885
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 13:54:41.934
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 13:54:42.983
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 13:54:48.756
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 0 2018-11-12 13:56:57.935
+!MESSAGE Module appazienda on Gino the Immortal not yet fully deployed. Waiting...
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 13:57:07.074
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 13:57:07.496
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 16842768 2018-11-12 13:57:07.530
+!MESSAGE Poll Thread Aborted: null
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 13:57:07.554
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 13:57:08.606
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 13:57:14.385
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 0 2018-11-12 13:57:17.961
+!MESSAGE Module appazienda on Gino the Immortal still not ready to be shown in browser. Aborting delay.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 14:00:09.082
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 14:00:09.726
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 16842768 2018-11-12 14:00:09.733
+!MESSAGE Poll Thread Aborted: null
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 14:00:09.813
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 14:00:10.887
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 14:00:16.659
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 14:02:32.686
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 14:02:33.593
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 14:02:33.622
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 14:02:34.677
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 14:02:40.452
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 14:03:22.714
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 14:03:23.300
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 16842768 2018-11-12 14:03:23.309
+!MESSAGE Poll Thread Aborted: null
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 14:04:29.043
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 14:04:30.600
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 14:04:47.184
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 14:07:48.086
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 14:07:48.625
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2018-11-12 14:08:10.056
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2018-11-12 14:08:10.057
+!MESSAGE Could not delete C:\Users\Terminale11\wildfly-10.1.0.Final\standalone\deployments\contocorrente.war. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2018-11-12 14:08:10.123
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2018-11-12 14:08:10.123
+!MESSAGE Could not delete C:\Users\Terminale11\wildfly-10.1.0.Final\standalone\deployments\appazienda.war. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2018-11-12 14:08:10.214
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2018-11-12 14:08:10.214
+!MESSAGE Could not delete C:\Users\Terminale11\wildfly-10.1.0.Final\standalone\deployments\corsi.war. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 14:08:10.403
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 14:08:11.473
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 14:08:18.085
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2018-11-12 14:08:28.584
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2018-11-12 14:08:28.584
+!MESSAGE Could not delete C:\Users\Terminale11\wildfly-10.1.0.Final\standalone\deployments\contocorrente.war. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2018-11-12 14:08:28.601
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2018-11-12 14:08:28.602
+!MESSAGE Could not delete C:\Users\Terminale11\wildfly-10.1.0.Final\standalone\deployments\corsi.war. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2018-11-12 14:10:13.347
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2018-11-12 14:10:13.347
+!MESSAGE Could not delete C:\Users\Terminale11\wildfly-10.1.0.Final\standalone\deployments\corsi.war. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 14:10:44.282
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 14:10:45.030
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 14:10:45.062
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 14:10:46.153
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 14:10:52.136
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842776 2018-11-12 14:11:28.672
+!MESSAGE Server shutting down
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2018-11-12 14:11:29.460
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2018-11-12 14:11:29.585
+!MESSAGE The server "Gino the Immortal" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_191 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2018-11-12 14:11:30.693
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2018-11-12 14:11:37.834
+!MESSAGE Server Startup Succeeded

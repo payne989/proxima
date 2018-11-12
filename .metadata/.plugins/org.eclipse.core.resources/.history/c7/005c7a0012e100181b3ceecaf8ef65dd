@@ -1,0 +1,9 @@
+package model;
+
+public class Edizione {
+
+	private int id;
+	private int idCorso;
+	private int idDocente;
+	
+}

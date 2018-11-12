@@ -1,0 +1,33 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class CorsoDao {
+
+	public static void insertCorso(String nome) {
+
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "INSERT INTO corso (nome) VALUES (?)";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setString(1, nome);
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+}

@@ -1,0 +1,83 @@
+package ejb;
+
+import java.util.ArrayList;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+import dao.CorsoDao;
+import dto.CorsoDTO;
+
+/**
+ * Session Bean implementation class Corso_ejb
+ */
+@Stateless
+@LocalBean
+public class Corso_ejb implements Corso_ejbRemote, Corso_ejbLocal {
+
+    
+    public Corso_ejb() {
+        
+    }
+
+    public boolean insertCorso (String nome) {
+    	
+    	System.out.println("Corso_ejb.insertCorso nome:"+nome);
+    	
+    	return CorsoDao.insertCorso(nome);
+    }
+    	
+    public boolean deleteCorso(int id) {
+    	
+    	return CorsoDao.deleteCorso(id);
+    	
+}
+    
+    public boolean updateCorso(String nome) {
+    	
+    	return CorsoDao.updateCorso(nome);
+    	
+    }
+
+    public ArrayList<CorsoDTO> selectCorso (String nome) {
+		
+    	return CorsoDao.selectCorso(nome);
+    	
+    	
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+

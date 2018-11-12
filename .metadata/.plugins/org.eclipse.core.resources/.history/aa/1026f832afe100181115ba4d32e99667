@@ -1,0 +1,103 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class DocenteDao {
+
+	public static void insertDocente(String nome, String cognome, String cf) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "INSERT INTO docente (nome,cognome,cf) VALUES (?,?,?)";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setString(1, nome);
+			preparedStatement.setString(1, cognome);
+			preparedStatement.setString(1, cf);
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteDocente(String cf) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "DELETE FROM docente WHERE cf=?";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setString(1, cf);
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void updateDocente (String nome, String cognome, String cf, int id) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "UPDATE docente SET nome = ?, cognome = ?, cf = ? WHERE id = ? ";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setString(1, nome);
+			preparedStatement.setString(2, cognome);
+			preparedStatement.setString(3, cf);
+			preparedStatement.setInt(1, id);
+			
+			preparedStatement.executeUpdate();
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public static void selectDocente (String cf) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "SELECT FROM docente WHERE cf = ?";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setString(1, cf);
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+}

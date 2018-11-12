@@ -1,0 +1,11 @@
+package ejb;
+
+import javax.ejb.Remote;
+
+@Remote
+public interface Docente_ejbRemote {
+
+	
+	
+	public boolean insertDocente (String nome, String cognome, String cf);
+}

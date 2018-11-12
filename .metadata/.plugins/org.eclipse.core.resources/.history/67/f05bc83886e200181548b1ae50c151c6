@@ -1,0 +1,179 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+
+import model.Frequenze;
+
+public class FrequenzeDao {
+	
+	public static boolean insertFrequenze (int idImp, int idEdiz) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "INSERT INTO frequenze (idimp,idedizione) VALUES (?,?)";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setInt(1, idImp);
+			preparedStatement.setInt(2, idEdiz);
+
+			preparedStatement.executeUpdate();
+
+			return true;
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	
+	}
+
+	public static boolean deleteFrequenzeById (int id) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "DELETE FROM frequenze WHERE id=?";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setInt(1, id);
+
+			preparedStatement.executeUpdate();
+
+			
+			return true;
+
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+			}
+		
+	}
+
+	public static boolean deleteFrequenzeByEdiz (int idEdiz) {
+		
+		
+			try {
+				Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+				java.sql.PreparedStatement preparedStatement = null;
+
+				String insertTableSQL = "DELETE FROM frequenze WHERE idedizione = ?";
+
+				preparedStatement = con.prepareStatement(insertTableSQL);
+
+				preparedStatement.setInt(1, idEdiz);
+
+				preparedStatement.executeUpdate();
+				
+			} catch (SQLException | NamingException e) {
+				
+				e.printStackTrace();
+			}
+
+			
+			return true;
+			
+		}
+	
+public static ArrayList<Frequenze> selectFrequenzeByImp(int idImp) {
+
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			ArrayList<Frequenze> freqList = new ArrayList<Frequenze>();
+
+			
+				String qry = "SELECT * FROM corso WHERE idimp=?";
+
+				PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
+
+				preparedStatement.setInt(1, idImp);
+
+				ResultSet res = preparedStatement.executeQuery();
+
+				while (res.next()) {
+
+					Frequenze freq = new Frequenze();
+
+					freq.setId(res.getInt("id"));
+					freq.setIdImp(res.getInt("idimp"));
+					freq.setIdEdiz(res.getInt("idedizione"));
+					
+
+					freqList.add(freq);
+
+					System.out.println(freq);
+
+}
+				return freqList;
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static ArrayList<Frequenze> selectFrequenzeByEdiz(int idEdiz) {
+
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			ArrayList<Frequenze> freqList = new ArrayList<Frequenze>();
+
+			
+				String qry = "SELECT * FROM corso WHERE idedizione = ?";
+
+				PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
+
+				preparedStatement.setInt(1, idEdiz);
+
+				ResultSet res = preparedStatement.executeQuery();
+
+				while (res.next()) {
+
+					Frequenze freq = new Frequenze();
+
+					freq.setId(res.getInt("id"));
+					freq.setIdImp(res.getInt("idimp"));
+					freq.setIdEdiz(res.getInt("idedizione"));
+					
+
+					freqList.add(freq);
+
+					System.out.println(freq);
+
+}
+				return freqList;
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
+
+
+
+
+
+
+
+}

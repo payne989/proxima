@@ -1,0 +1,20 @@
+package model;
+
+public class Sede {	
+	
+	private int id;
+	private String nomeSede;
+	private String indirizzo;
+	private String citta;
+	
+	
+	public Sede(int id, String nomeSede, String indirizzo, String citta) {
+		super();
+		this.id = id;
+		this.nomeSede = nomeSede;
+		this.indirizzo = indirizzo;
+		this.citta = citta;
+	}
+	
+	
+}

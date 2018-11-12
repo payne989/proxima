@@ -1,0 +1,34 @@
+package ejb;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+import dao.DocenteDao;
+
+
+@Stateless
+@LocalBean
+public class Docente_ejb implements Docente_ejbRemote, Docente_ejbLocal {
+
+   
+    public Docente_ejb() {}
+
+    public boolean insertDocente (String nome, String cognome, String cf){
+		
+    	return DocenteDao.insertDocente(nome, cognome, cf);
+    	
+    }
+
+    public boolean deleteDocente (int id) {
+    	
+    	return DocenteDao.deleteDocente(id);
+    }
+    
+    public boolean updateDocente (String nome, String cognome, String cf, int id) {
+    	
+    	return DocenteDao.updateDocente(nome, cognome, cf, id);
+    }
+
+
+
+}

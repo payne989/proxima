@@ -1,0 +1,28 @@
+1539607339109	Rename local variable 'cmd'
+1539607609258	Rename method 'research'
+1539613390702	Rename method 'research'
+1539678759625	Rename method 'research'
+1539678814113	Rename method 'researchyidImp'
+1539678829914	Rename method 'researchByID'
+1539678843254	Rename method 'researchByID'
+1539696308085	Rename resource 'anagrafica.jsp'
+1539771483451	Move 'home.jsp' to 'WEB-INF'
+1539771543829	Move 'home.jsp' to 'progetto'
+1539771545470	Move 'risultatoImpiegato.jsp' to 'progetto'
+1539771547186	Move 'impiegatoInsert.jsp' to 'progetto'
+1539771548792	Move 'ruoloInsert.jsp' to 'progetto'
+1539774697084	Delete element
+1539774978572	Move 'ruoloInsert.jsp' to 'WEB-INF'
+1539774981327	Move 'impiegatoInsert.jsp' to 'WEB-INF'
+1539774983320	Move 'risultatoImpiegato.jsp' to 'WEB-INF'
+1539774985161	Move 'home.jsp' to 'WEB-INF'
+1539774990314	Delete element
+1539776471941	Move 'risultatoImpiegato.jsp' to 'WebContent'
+1539776475344	Move 'impiegatoInsert.jsp' to 'WebContent'
+1539776515031	Move 'home.jsp' to 'WebContent'
+1539776516990	Move 'ruoloInsert.jsp' to 'WebContent'
+1539791414437	Rename method 'researchByName'
+1539875697471	Delete element
+1539953812587	Rename resource 'cancelImpiegato.jsp'
+1539959497506	Delete element
+1539960236252	Delete element

@@ -1,0 +1,120 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.SQLException;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+            
+public class EdizioneDao {
+
+	public static boolean deleteEdizione (int id) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "DELETE FROM edizione WHERE id";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setInt(1, id);
+
+			preparedStatement.executeUpdate();
+
+			System.out.println("Corso cancellato con successo");
+			return true;
+
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+			}
+		
+	}
+
+	public static boolean updateEdizione (int id, int idCorso, int idSede, int idDocente, Date dataIn, Date dataFin) {
+		
+		try {
+		Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+		java.sql.PreparedStatement preparedStatement = null;
+
+		String insertTableSQL = "UPDATE frequenze SET idcorso = ? , idsede = ?, iddocente = ?, datain = ?, datafin = ? WHERE id = ?";
+
+		preparedStatement = con.prepareStatement(insertTableSQL);
+
+		preparedStatement.setInt(1, idCorso);
+		preparedStatement.setInt(2, idSede);
+		preparedStatement.setInt(3, idDocente);
+		preparedStatement.setDate(4, dataIn);
+		preparedStatement.setDate(5, dataFin);
+		preparedStatement.setInt(6, id);
+		
+		preparedStatement.executeUpdate();
+
+		
+
+		return true;
+
+	} catch (SQLException | NamingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		return false;
+	}
+
+}
+		
+	public static boolean insertEdizione (int idCorso, int idSede, int idDocente, Date dataIn, Date dataFin) {
+		
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+
+			java.sql.PreparedStatement preparedStatement = null;
+
+			String insertTableSQL = "INSERT INTO corso (nome) VALUES (?)";
+
+			preparedStatement = con.prepareStatement(insertTableSQL);
+
+			preparedStatement.setString(1, nome);
+
+			preparedStatement.executeUpdate();
+
+			return true;
+		} catch (SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Corso inserito con successo");
+
+		return false;
+
+	}
+		
+		
+		
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

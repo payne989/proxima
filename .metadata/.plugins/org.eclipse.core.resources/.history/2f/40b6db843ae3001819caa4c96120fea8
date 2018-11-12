@@ -1,0 +1,32 @@
+package utility;
+
+import dto.EdizioneDTO;
+import model.Edizione;
+
+public class Converter {
+
+	public static EdizioneDTO convertEdizione (Edizione ed) {
+		
+		EdizioneDTO edto = new EdizioneDTO ();
+		
+			edto.setId(ed.getId());
+			edto.setIdCorso(ed.getIdCorso());
+			edto.setIdSede(ed.getIdSede());
+			edto.setIdDocente(ed.getIdDocente());
+			edto.setDataIn(ed.getDataIn());
+			edto.setDataFin(ed.getDataFin());
+			
+			return edto;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
