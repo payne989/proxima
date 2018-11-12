@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<servers>
-  <server default="true" host="localhost" parentServerId="Gino the Immortal" version="8.6.0">
-    <admin password="VE9LIyMhUTQ2NjkxaFBUajFIclNkZFhaZHoyWlJDWW1mako3S1pxcWZMWWhnUDR4NE92VHhCTWVtMTBFb1hUVjl3VUx6UVRPbGluWjI2MDFpbE9zek5tU05qdEE=" port="9990" secure="false" user="admin"/>
-    <jdbc jdbcport="31000" jdbcsecure="false" jdbcuser=""/>
-  </server>
-</servers>

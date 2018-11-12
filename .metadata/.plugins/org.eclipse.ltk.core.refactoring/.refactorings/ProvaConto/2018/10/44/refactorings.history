@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move &apos;Conto.wsdl, Movimento.wsdl&apos; to &apos;wsdl&apos;" description="Move 2 resources to &apos;wsdl&apos;" destination="WebContent/wsdl" element1="/contocorrente/WebContent/wsdl/Conto.wsdl" element2="/contocorrente/WebContent/wsdl/Movimento.wsdl" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="2" stamp="1540893439476" updateReferences="true"/>
-</session>

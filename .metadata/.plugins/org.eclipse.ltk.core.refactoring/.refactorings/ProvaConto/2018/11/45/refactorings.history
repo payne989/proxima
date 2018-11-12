@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 2 elements to &apos;wsdl&apos;&#x0D;&#x0A;- Original project: &apos;ProvaConto&apos;&#x0D;&#x0A;- Destination element: &apos;wsdl&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Conto.wsdl&#x0D;&#x0A;     Movimento.wsdl" description="Copy files" element1="WebContent/wsdl/Conto.wsdl" element2="WebContent/wsdl/Movimento.wsdl" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1541426007441" target="/app azienda/WebContent/wsdl" units="0" version="1.0"/>
-</session>
