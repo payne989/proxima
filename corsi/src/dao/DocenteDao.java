@@ -8,37 +8,34 @@ import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import model.Docente;
 
-
 public class DocenteDao {
 
-	public static boolean insertDocente(String nome, String cognome, String cf) {
+	private EntityManager em;
+
+	public DocenteDao(EntityManager em) {
+		super();
+		this.em = em;
+	}
+
+	public DocenteDao() {
+		super();
+	}
+
+	public boolean insertDocente(modelJpa.Docente doc) {
 
 		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "INSERT INTO docente (nome,cognome,cf) VALUES (?,?,?)";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setString(1, nome);
-			preparedStatement.setString(2, cognome);
-			preparedStatement.setString(3, cf);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
+			em.persist(doc);
+		} catch (Exception e) {
+			
 			e.printStackTrace();
-			return false;
 		}
 
+		return true;
 	}
 
 	public static boolean deleteDocente(int id) {
@@ -47,9 +44,9 @@ public class DocenteDao {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
 			EdizioneDao.deleteEdizioneByIdDocente(id);
-			
+
 			FrequenzeDao.deleteFrequenzeByDocente(id);
-			
+
 			java.sql.PreparedStatement preparedStatement = null;
 
 			String insertTableSQL = "DELETE FROM docente WHERE id=?";
@@ -69,33 +66,16 @@ public class DocenteDao {
 
 	}
 
-	public static boolean updateDocente(String nome, String cognome, String cf, int id) {
+	public boolean updateDocente(modelJpa.Docente doc) {
 
 		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "UPDATE docente SET nome = ?, cognome = ?, cf = ? WHERE id = ? ";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setString(1, nome);
-			preparedStatement.setString(2, cognome);
-			preparedStatement.setString(3, cf);
-			preparedStatement.setInt(4, id);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
+			em.merge(doc);
+		} catch (Exception e) {
+			
 			e.printStackTrace();
-			return true;
 		}
-
+		return true;
 	}
-
 	public static Docente selectDocenteByCf(String cf) {
 
 		Docente doc = new Docente();
@@ -133,7 +113,7 @@ public class DocenteDao {
 		}
 
 	}
-	
+
 	public static Docente selectDocenteById(int id) {
 
 		Docente doc = new Docente();
@@ -172,34 +152,33 @@ public class DocenteDao {
 
 	}
 
-	public static ArrayList<Docente> selectAllDocente()  {
+	public static ArrayList<Docente> selectAllDocente() {
 
 		try {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
 			ArrayList<Docente> docList = new ArrayList<Docente>();
 
-			
-				String qry = "SELECT * FROM docente";
+			String qry = "SELECT * FROM docente";
 
-				PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-				
-				ResultSet res = preparedStatement.executeQuery();
+			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
 
-				while (res.next()) {
+			ResultSet res = preparedStatement.executeQuery();
 
-					Docente doc = new Docente();
+			while (res.next()) {
 
-					doc.setId(res.getInt("id"));
-					doc.setNome(res.getString("nome"));
-					doc.setCognome(res.getString("cognome"));
-					doc.setCf(res.getString("cf"));
-					docList.add(doc);
+				Docente doc = new Docente();
 
-					System.out.println(doc);
+				doc.setId(res.getInt("id"));
+				doc.setNome(res.getString("nome"));
+				doc.setCognome(res.getString("cognome"));
+				doc.setCf(res.getString("cf"));
+				docList.add(doc);
 
-}
-				return docList;
+				System.out.println(doc);
+
+			}
+			return docList;
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

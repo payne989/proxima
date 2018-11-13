@@ -8,37 +8,33 @@ import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import model.Corso;
 
-
-
 public class CorsoDao {
 
-	public static boolean insertCorso(String nome) {
+	private EntityManager em;
+
+	public CorsoDao() {
+		super();
+	}
+
+	public CorsoDao(EntityManager em) {
+		super();
+		this.em = em;
+	}
+
+	public boolean insertCorso(modelJpa.Corso co) {
 
 		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "INSERT INTO corso (nome) VALUES (?)";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setString(1, nome);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-		} catch (SQLException | NamingException e) {
+			em.persist(co);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Corso inserito con successo");
 
-		return false;
-
+		return true;
 	}
 
 	public static boolean deleteCorso(int id) {
@@ -47,9 +43,9 @@ public class CorsoDao {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
 			EdizioneDao.deleteEdizioneByIdCorso(id);
-			
-			FrequenzeDao.deleteFrequenzeByCorso(id);	
-			
+
+			FrequenzeDao.deleteFrequenzeByCorso(id);
+
 			java.sql.PreparedStatement preparedStatement = null;
 
 			String insertTableSQL = "DELETE FROM corso WHERE id=?";
@@ -67,68 +63,49 @@ public class CorsoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
-			}
-		
-	}
-
-	public static boolean updateCorso(String nome) {
-
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "UPDATE corso SET nome=? ";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setString(1, nome);
-
-			preparedStatement.executeUpdate();
-
-			System.out.println("Corso modificato con successo");
-
-			return true;
-
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-			return false;
 		}
 
 	}
 
-	public static ArrayList<Corso> selectCorsoByNome(String nome)  {
+	public boolean updateCorso(modelJpa.Corso co) {
+
+		try {
+			em.merge(co);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public static ArrayList<Corso> selectCorsoByNome(String nome) {
 
 		try {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
 			ArrayList<Corso> corsoList = new ArrayList<Corso>();
 
-			
-				String qry = "SELECT * FROM corso WHERE nome=?";
+			String qry = "SELECT * FROM corso WHERE nome=?";
 
-				PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
+			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
 
-				preparedStatement.setString(1, "%"+nome+"%");
+			preparedStatement.setString(1, "%" + nome + "%");
 
-				ResultSet res = preparedStatement.executeQuery();
+			ResultSet res = preparedStatement.executeQuery();
 
-				while (res.next()) {
+			while (res.next()) {
 
-					Corso cor = new Corso();
+				Corso cor = new Corso();
 
-					cor.setId(res.getInt("id"));
-					cor.setNome(res.getString("nome"));
-					
+				cor.setId(res.getInt("id"));
+				cor.setNome(res.getString("nome"));
 
-					corsoList.add(cor);
+				corsoList.add(cor);
 
-					System.out.println(cor);
+				System.out.println(cor);
 
-}
-				return corsoList;
+			}
+			return corsoList;
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -136,34 +113,32 @@ public class CorsoDao {
 		}
 	}
 
-	public static ArrayList<Corso> selectAllCorso()  {
+	public static ArrayList<Corso> selectAllCorso() {
 
 		try {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
 			ArrayList<Corso> corsoList = new ArrayList<Corso>();
 
-			
-				String qry = "SELECT * FROM corso";
+			String qry = "SELECT * FROM corso";
 
-				PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-				
-				ResultSet res = preparedStatement.executeQuery();
+			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
 
-				while (res.next()) {
+			ResultSet res = preparedStatement.executeQuery();
 
-					Corso cor = new Corso();
+			while (res.next()) {
 
-					cor.setId(res.getInt("id"));
-					cor.setNome(res.getString("nome"));
-					
+				Corso cor = new Corso();
 
-					corsoList.add(cor);
+				cor.setId(res.getInt("id"));
+				cor.setNome(res.getString("nome"));
 
-					System.out.println(cor);
+				corsoList.add(cor);
 
-}
-				return corsoList;
+				System.out.println(cor);
+
+			}
+			return corsoList;
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -190,7 +165,7 @@ public class CorsoDao {
 			if (res.next()) {
 				cor.setId(id);
 				cor.setNome(res.getString("nome"));
-				
+
 				System.out.println(cor);
 
 			}

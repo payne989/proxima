@@ -9,11 +9,11 @@ import dto.CorsoDTO;
 @Remote
 public interface CorsoejbRemote {
 
-public boolean insertCorso (String nome);
+	public boolean insertCorso (String nome);
 	
 	public boolean deleteCorso(int id);
 	
-	public boolean updateCorso(String nome);
+	public boolean updateCorso(CorsoDTO corso);
 	 
 	public ArrayList<CorsoDTO> selectCorsoByNome (String nome);
 	 

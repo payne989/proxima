@@ -17,7 +17,7 @@ import ejbInterfaces.CorsoejbRemote;
 public class CorsiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Resource(mappedName = "java:jboss/exported/corsi/Corsoejb!ejbInterfaces.CorsoejbRemote")
+	@Resource(mappedName = "java:jboss/exported/WebApp/corsi/Corsoejb!ejbInterfaces.CorsoejbRemote")
 	private CorsoejbRemote corsiejb;
 
 	public CorsiServlet() {

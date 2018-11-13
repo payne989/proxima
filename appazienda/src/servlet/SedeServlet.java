@@ -19,7 +19,7 @@ import ejbInterfaces.SedeejbRemote;
 public class SedeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	@Resource(mappedName = "java:jboss/exported/corsi/Sedeejb!ejbInterfaces.SedeejbRemote")
+	@Resource(mappedName = "java:jboss/exported/WebApp/corsi/Sedeejb!ejbInterfaces.SedeejbRemote")
 	private SedeejbRemote sedeejb;
     
     public SedeServlet() {

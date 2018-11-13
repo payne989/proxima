@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import dto.CorsoDTO;
 
+
 @Local
 public interface CorsoejbLocal {
 	
@@ -13,7 +14,7 @@ public interface CorsoejbLocal {
 	
 	public boolean deleteCorso(int id);
 	
-	public boolean updateCorso(String nome);
+	public boolean updateCorso(CorsoDTO corso);
 	 
 	public ArrayList<CorsoDTO> selectCorsoByNome (String nome);
 	 

@@ -9,11 +9,11 @@ import dto.DocenteDTO;
 @Remote
 public interface DocenteejbRemote {
 
-public boolean insertDocente (String nome, String cognome, String cf);
+	public boolean insertDocente (String nome, String cognome, String cf);
 	
 	public boolean deleteDocente (int id);
 	
-	public boolean updateDocente (String nome, String cognome, String cf, int id);
+	public boolean updateCorso(DocenteDTO docente);
 	
 	public DocenteDTO selectDocenteById(int id);
 	

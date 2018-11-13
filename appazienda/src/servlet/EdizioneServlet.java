@@ -20,7 +20,7 @@ public class EdizioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	@Resource(mappedName = "java:jboss/exported/corsi/Edizioneejb!ejbInterfaces.EdizioneejbRemote")
+	@Resource(mappedName = "java:jboss/exported/WebApp/corsi/Edizioneejb!ejbInterfaces.EdizioneejbRemote")
 	private EdizioneejbRemote edizejb;
 	
 	public EdizioneServlet() {

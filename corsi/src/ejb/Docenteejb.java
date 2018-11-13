@@ -4,11 +4,17 @@ import java.util.ArrayList;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import dao.CorsoDao;
 import dao.DocenteDao;
+import dto.CorsoDTO;
 import dto.DocenteDTO;
 import ejbInterfaces.DocenteejbLocal;
 import ejbInterfaces.DocenteejbRemote;
+import modelJpa.Corso;
+import modelJpa.Docente;
 import utility.Converter;
 
 
@@ -16,13 +22,24 @@ import utility.Converter;
 @LocalBean
 public class Docenteejb implements DocenteejbRemote, DocenteejbLocal {
 
-   
+	@PersistenceContext(unitName="Hib4PU")
+	private EntityManager em;
+	
     public Docenteejb() {}
 
-    public boolean insertDocente (String nome, String cognome, String cf){
-		
-    	return DocenteDao.insertDocente(nome, cognome, cf);
+    public boolean insertDocente (String nome, String cognome, String cf) {
     	
+    	
+    	Docente doc = new Docente();
+    	DocenteDao ddao = new DocenteDao(em);
+    	
+    	doc.setNome(nome);
+    	doc.setCognome(cognome);
+    	doc.setCf(cf);
+    	
+    	ddao.insertDocente(doc);
+    
+    	return true;
     }
 
     public boolean deleteDocente (int id) {
@@ -30,10 +47,20 @@ public class Docenteejb implements DocenteejbRemote, DocenteejbLocal {
     	return DocenteDao.deleteDocente(id);
     }
     
-    public boolean updateDocente (String nome, String cognome, String cf, int id) {
+    public boolean updateCorso(DocenteDTO docente) {
     	
-    	return DocenteDao.updateDocente(nome, cognome, cf, id);
-    }
+    	Docente doc = new Docente();
+    	DocenteDao docdao = new DocenteDao(em);
+    	
+    	doc.setId(docente.getId());
+    	doc.setNome(docente.getNome());
+    	doc.setCognome(docente.getCognome());
+    	doc.setCf(docente.getCf());
+    	
+    	docdao.updateDocente(doc);
+    	
+		return false;
+}
 
     public DocenteDTO selectDocenteById(int id) {
     	

@@ -3,10 +3,15 @@ package ejb;
 import java.util.ArrayList;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.jws.WebService;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import dao.CorsoDao;
 import dto.CorsoDTO;
 import ejbInterfaces.CorsoejbLocal;
 import ejbInterfaces.CorsoejbRemote;
+import modelJpa.Corso;
 import utility.Converter;
 
 
@@ -14,14 +19,23 @@ import utility.Converter;
 @LocalBean
 public class Corsoejb implements CorsoejbRemote, CorsoejbLocal {
 
+	
+	@PersistenceContext(unitName="Hib4PU")
+	private EntityManager em;
     
     public Corsoejb() {}
 
     public boolean insertCorso (String nome) {
     	
-    	System.out.println("Corso_ejb.insertCorso nome:"+nome);
     	
-    	return CorsoDao.insertCorso(nome);
+    	Corso co = new Corso();
+    	CorsoDao cdao = new CorsoDao(em);
+    	
+    	co.setNome(nome);
+    	
+    	cdao.insertCorso(co);
+    
+    	return true;
     }
     	
     public boolean deleteCorso(int id) {
@@ -30,9 +44,17 @@ public class Corsoejb implements CorsoejbRemote, CorsoejbLocal {
     	
 }
     
-    public boolean updateCorso(String nome) {
+    public boolean updateCorso(CorsoDTO corso) {
     	
-    	return CorsoDao.updateCorso(nome);
+    	Corso co = new Corso();
+    	CorsoDao cdao = new CorsoDao(em);
+    	
+    	co.setId(corso.getId());
+    	co.setNome(corso.getNome());
+    	
+    	cdao.updateCorso(co);
+    	
+		return false;
     	
     }
 
