@@ -9,7 +9,7 @@ import dto.FrequenzeDTO;
 @Remote
 public interface FrequenzeejbRemote {
 
-public boolean insertFrequenze (int idImp, int idEdiz);
+	public boolean insertFrequenze (FrequenzeDTO freq);
 	
 	public boolean deleteFrequenzeById (int id);
 	

@@ -1,15 +1,12 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import dto.DocenteDTO;
 import ejbInterfaces.DocenteejbRemote;
 
@@ -22,7 +19,6 @@ public class DocenteServlet extends HttpServlet {
 
 	public DocenteServlet() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,49 +31,16 @@ public class DocenteServlet extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String cognome = request.getParameter("cognome");
 			String cf = request.getParameter("cf");
+			if (nome != null && cognome != null && cf != null)
+				docenteejb.insertDocente(nome, cognome, cf);
+		} else if (funzione.equals("modifica")) {
 
-			docenteejb.insertDocente(nome, cognome, cf);
-		} else if (funzione.equals("cancella")) {
-
-			int id = Integer.parseInt(request.getParameter("id"));
-
-			docenteejb.deleteDocente(id);
-		}
-
-		else if (funzione.equals("modifica")) {
-
-			String nome = request.getParameter("nome");
-			String cognome = request.getParameter("cognome");
-			String cf = request.getParameter("cf");
-			int id = Integer.parseInt(request.getParameter("id"));
-
-			docenteejb.updateDocente(nome, cognome, cf, id);
-
-		}
-
-		else if (funzione.equals("cercaid")) {
-
-			int id = Integer.parseInt(request.getParameter("id"));
-
-			DocenteDTO doc = docenteejb.selectDocenteById(id);
-
-			request.setAttribute("docente", doc);
-		}
-
-		else if (funzione.equals("cercacf")) {
-
-			String cf = request.getParameter("cf");
-
-			DocenteDTO doc = docenteejb.selectDocenteByCf(cf);
-
-			request.setAttribute("docente", doc);
-		}
-
-		else if (funzione.equals("cercadocenti")) {
-
-			ArrayList<DocenteDTO> docList = docenteejb.selectAllDocente();
-
-			request.setAttribute("docente", docList);
+			DocenteDTO doc = new DocenteDTO();
+			doc.setId(3);
+			doc.setNome("Hibernate");
+			doc.setCognome("angela");
+			doc.setCf("hfhdhehf");
+			docenteejb.updateDocente(doc);
 
 		}
 

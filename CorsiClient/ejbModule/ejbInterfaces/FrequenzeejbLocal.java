@@ -9,7 +9,7 @@ import dto.FrequenzeDTO;
 @Local
 public interface FrequenzeejbLocal {
 
-	public boolean insertFrequenze (int idImp, int idEdiz);
+	public boolean insertFrequenze (FrequenzeDTO freq);
 	
 	public boolean deleteFrequenzeById (int id);
 	

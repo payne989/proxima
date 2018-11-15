@@ -13,7 +13,7 @@ public interface DocenteejbRemote {
 	
 	public boolean deleteDocente (int id);
 	
-	public boolean updateCorso(DocenteDTO docente);
+	public boolean updateDocente(DocenteDTO docente);
 	
 	public DocenteDTO selectDocenteById(int id);
 	

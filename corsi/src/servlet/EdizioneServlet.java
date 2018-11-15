@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dto.EdizioneDTO;
 
 import ejbInterfaces.EdizioneejbRemote;
-import utiliy.Util;
-
+import utility.Util;
 
 @WebServlet("/EdizioneServlet")
 public class EdizioneServlet extends HttpServlet {

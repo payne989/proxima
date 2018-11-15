@@ -7,38 +7,47 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import model.Frequenze;
+import modelJpa.Edizione;
+
 
 public class FrequenzeDao {
-	
-	public static boolean insertFrequenze (int idImp, int idEdiz) {
-		
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
-			java.sql.PreparedStatement preparedStatement = null;
+	private EntityManager em;
 
-			String insertTableSQL = "INSERT INTO frequenze (idimp,idedizione) VALUES (?,?)";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, idImp);
-			preparedStatement.setInt(2, idEdiz);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-	
+	public FrequenzeDao() {
+		super();
 	}
 
-	public static boolean deleteFrequenzeById (int id) {
-		
+	public FrequenzeDao(EntityManager em) {
+		super();
+		this.em = em;
+	}
+
+	public boolean insertFrequenze(int idImp, int idEdiz) {
+
+		modelJpa.Frequenze fr = new modelJpa.Frequenze();
+
+		fr.setIdimp(idImp);
+
+		Edizione ed = em.find(Edizione.class, idEdiz);
+		fr.setEdizione(ed);
+
+		try {
+			em.persist(fr);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return true;
+
+	}
+
+	public static boolean deleteFrequenzeById(int id) {
+
 		try {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
@@ -52,46 +61,42 @@ public class FrequenzeDao {
 
 			preparedStatement.executeUpdate();
 
-			
 			return true;
 
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
-			}
-		
+		}
+
 	}
 
-	public static boolean deleteFrequenzeBySede (int idSede) {
-		
-		
-			try {
-				Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+	public static boolean deleteFrequenzeBySede(int idSede) {
 
-				java.sql.PreparedStatement preparedStatement = null;
+		try {
+			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
-				String insertTableSQL = "Delete FROM frequenze WHERE idedizione IN (SELECT FROM edizione WHERE idsede=?)";
+			java.sql.PreparedStatement preparedStatement = null;
 
-				preparedStatement = con.prepareStatement(insertTableSQL);
+			String insertTableSQL = "Delete FROM frequenze WHERE idedizione IN (SELECT FROM edizione WHERE idsede=?)";
 
-				preparedStatement.setInt(1, idSede);
+			preparedStatement = con.prepareStatement(insertTableSQL);
 
-				preparedStatement.executeUpdate();
-				
-			} catch (SQLException | NamingException e) {
-				
-				e.printStackTrace();
-			}
+			preparedStatement.setInt(1, idSede);
 
-			
-			return true;
-			
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException | NamingException e) {
+
+			e.printStackTrace();
 		}
-	
-	public static boolean deleteFrequenzeByCorso (int idCorso) {
-		
-		
+
+		return true;
+
+	}
+
+	public static boolean deleteFrequenzeByCorso(int idCorso) {
+
 		try {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
@@ -104,20 +109,18 @@ public class FrequenzeDao {
 			preparedStatement.setInt(1, idCorso);
 
 			preparedStatement.executeUpdate();
-			
+
 		} catch (SQLException | NamingException e) {
-			
+
 			e.printStackTrace();
 		}
 
-		
 		return true;
-		
+
 	}
 
-	public static boolean deleteFrequenzeByDocente (int idDocente) {
-		
-		
+	public static boolean deleteFrequenzeByDocente(int idDocente) {
+
 		try {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
@@ -130,45 +133,43 @@ public class FrequenzeDao {
 			preparedStatement.setInt(1, idDocente);
 
 			preparedStatement.executeUpdate();
-			
+
 		} catch (SQLException | NamingException e) {
-			
+
 			e.printStackTrace();
 		}
 
-		
 		return true;
-		
+
 	}
 
-	public static ArrayList<Frequenze> selectAllFrequenze()  {
+	public static ArrayList<Frequenze> selectAllFrequenze() {
 
 		try {
 			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
 
 			ArrayList<Frequenze> freqList = new ArrayList<Frequenze>();
 
-			
-				String qry = "SELECT * FROM frequenze";
+			String qry = "SELECT * FROM frequenze";
 
-				PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-				
-				ResultSet res = preparedStatement.executeQuery();
+			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
 
-				while (res.next()) {
+			ResultSet res = preparedStatement.executeQuery();
 
-					Frequenze freq = new Frequenze();
+			while (res.next()) {
 
-					freq.setId(res.getInt("id"));
-					freq.setId(res.getInt("idimp"));
-					freq.setId(res.getInt("idedione"));
-					freqList.add(freq);
+				Frequenze freq = new Frequenze();
 
-					System.out.println(freq);
+				freq.setId(res.getInt("id"));
+				freq.setId(res.getInt("idimp"));
+				freq.setId(res.getInt("idedione"));
+				freqList.add(freq);
 
-}
-				return freqList;
-				
+				System.out.println(freq);
+
+			}
+			return freqList;
+
 		} catch (SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -211,6 +212,5 @@ public class FrequenzeDao {
 		}
 
 	}
-	
 
 }

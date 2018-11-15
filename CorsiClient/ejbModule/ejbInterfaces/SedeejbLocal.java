@@ -8,11 +8,11 @@ import dto.SedeDTO;
 @Local
 public interface SedeejbLocal {
 
-	public boolean insertSede (String nome, String indirizzo,String citta);
+	public boolean insertSede(String nomeSede, String indirizzo, String citta);
 	
 	public boolean deleteSede (int id);
 	
-	public boolean updateSede (String nome, String indirizzo,String citta, int id);
+	public boolean updateSede(SedeDTO sede);;
 	
 	public ArrayList<SedeDTO> selectAllSede ();
 	

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import dao.FrequenzeDao;
 import dto.FrequenzeDTO;
@@ -16,12 +18,19 @@ import utility.Converter;
 @LocalBean
 public class Frequenzeejb implements FrequenzeejbRemote, FrequenzeejbLocal {
 
-    
+	@PersistenceContext(unitName="Hib4PU")
+	private EntityManager em;
+	
     public Frequenzeejb() {}
 
-    public boolean insertFrequenze (int idImp, int idEdiz) {
+    public boolean insertFrequenze (FrequenzeDTO freq) {
     	
-    	return FrequenzeDao.insertFrequenze(idImp, idEdiz);
+    	int idImp = freq.getIdImp();
+    	int idEdiz = freq.getIdEdiz();
+    	
+    	FrequenzeDao fdao = new FrequenzeDao(em);
+    	
+    	return fdao.insertFrequenze(idImp, idEdiz);
     }
     
     public boolean deleteFrequenzeById (int id) {

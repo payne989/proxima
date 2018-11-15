@@ -1,17 +1,14 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
-
-import model.Docente;
+import modelJpa.Docente;
 
 public class DocenteDao {
 
@@ -26,12 +23,12 @@ public class DocenteDao {
 		super();
 	}
 
-	public boolean insertDocente(modelJpa.Docente doc) {
+	public boolean insertDocente(Docente doc) {
 
 		try {
 			em.persist(doc);
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -66,123 +63,45 @@ public class DocenteDao {
 
 	}
 
-	public boolean updateDocente(modelJpa.Docente doc) {
+	public boolean updateDocente(Docente doc) {
 
 		try {
 			em.merge(doc);
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 		return true;
 	}
-	public static Docente selectDocenteByCf(String cf) {
 
-		Docente doc = new Docente();
+	public Docente selectDocenteBycf(String cf) {
+
+		TypedQuery<Docente> qry = em.createQuery("SELECT doc FROM DOCENTE doc WHERE doc.cf = :codfisc", Docente.class);
+		qry.setParameter("codfisc", cf);
+
+		Docente doc = (qry.getSingleResult());
+
+		return doc;
+	}
+
+	public Docente selectDocenteById(int id) {
 
 		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+			return em.find(Docente.class, id);
+		} catch (Exception e) {
 
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "SELECT * FROM docente WHERE cf = ?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setString(1, cf);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			if (res.next()) {
-				doc.setId(res.getInt("id"));
-				doc.setNome(res.getString("nome"));
-				doc.setCognome(res.getString("cognome"));
-				doc.setCf(cf);
-
-				System.out.println(doc);
-
-				return doc;
-			} else
-				return null;
-		}
-
-		catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
 
 	}
 
-	public static Docente selectDocenteById(int id) {
+	public ArrayList<Docente> selectAllDocente() {
 
-		Docente doc = new Docente();
+		TypedQuery<Docente> qry = em.createQuery("SELECT doc FROM DOCENTE doc ", Docente.class);
+		
 
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "SELECT * FROM docente WHERE id = ?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, id);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			if (res.next()) {
-				doc.setId(id);
-				doc.setNome(res.getString("nome"));
-				doc.setCognome(res.getString("cognome"));
-				doc.setCf(res.getString("cf"));
-
-				System.out.println(doc);
-
-				return doc;
-			} else
-				return null;
-		}
-
-		catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-
-	}
-
-	public static ArrayList<Docente> selectAllDocente() {
-
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			ArrayList<Docente> docList = new ArrayList<Docente>();
-
-			String qry = "SELECT * FROM docente";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			while (res.next()) {
-
-				Docente doc = new Docente();
-
-				doc.setId(res.getInt("id"));
-				doc.setNome(res.getString("nome"));
-				doc.setCognome(res.getString("cognome"));
-				doc.setCf(res.getString("cf"));
-				docList.add(doc);
-
-				System.out.println(doc);
-
-			}
-			return docList;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		return new ArrayList<Docente>(qry.getResultList());
+		
 	}
 }

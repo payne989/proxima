@@ -1,17 +1,34 @@
  package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import model.Edizione;
+import modelJpa.Corso;
+import modelJpa.Docente;
+import modelJpa.Sede;
 
 public class EdizioneDao {
+	
+	private EntityManager em;
+	
+	public EdizioneDao(EntityManager em) {
+		super();
+		this.em = em;
+	}
+
+	public EdizioneDao() {
+		super();
+	}
 
 	public static boolean deleteEdizioneById(int id) {
 
@@ -119,66 +136,53 @@ public class EdizioneDao {
 
 	}
 	
-	public static boolean updateEdizione(int id, int idCorso, int idSede, int idDocente, Date dataIn, Date dataFin) {
+	public boolean updateEdizione(int id, int idSede, int idDocente, Date dataIn, Date dataFin) {
 
+		modelJpa.Edizione ed = em.find(modelJpa.Edizione.class,id);
+    	
+		ed.setDatain(dataIn);
+		ed.setDatafin(dataFin);
+		
+		Docente d = em.find(Docente.class, idDocente);
+		ed.setDocente(d);
+		
+		Sede s = em.find(Sede.class, idSede);
+		ed.setSede(s);
+		
 		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "UPDATE frequenze SET idcorso = ? , idsede = ?, iddocente = ?, datain = ?, datafin = ? WHERE id = ?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, idCorso);
-			preparedStatement.setInt(2, idSede);
-			preparedStatement.setInt(3, idDocente);
-			preparedStatement.setDate(4, dataIn);
-			preparedStatement.setDate(5, dataFin);
-			preparedStatement.setInt(6, id);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-			return false;
-		}
-
-	}
-
-	public static boolean insertEdizione(int idCorso, int idSede, int idDocente, Date dataIn, Date dataFin) {
-
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "INSERT INTO edizione (idcorso,idsede,iddocente,datain,datafin) VALUES (?,?,?,?,?)";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, idCorso);
-			preparedStatement.setInt(2, idSede);
-			preparedStatement.setInt(3, idDocente);
-			preparedStatement.setDate(4, dataIn);
-			preparedStatement.setDate(5, dataFin);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
+			em.merge(ed);
+		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
-		System.out.println("Corso inserito con successo");
-
-		return false;
-
-	}
+		
+		return true;
+	} 
+	
+	public boolean insertEdizione (int idCorso,int idSede, int idDocente, Date dataIn, Date dataFin) {
+		
+		modelJpa.Edizione ed = new modelJpa.Edizione();
+    	
+		ed.setDatain(dataIn);
+		ed.setDatafin(dataFin);
+		
+		Corso c = em.find(Corso.class, idCorso);		
+		ed.setCorso(c);
+		
+		Docente d = em.find(Docente.class, idDocente);
+		ed.setDocente(d);
+		
+		Sede s = em.find(Sede.class, idSede);
+		ed.setSede(s);
+		try {
+			em.persist(ed);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return true;
+	} 
 
 	public static Edizione selectEdizioneById(int id) {
 
