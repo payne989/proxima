@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +35,7 @@ public class DocenteServlet extends HttpServlet {
 			String cf = request.getParameter("cf");
 			if (nome != null && cognome != null && cf != null)
 				docenteejb.insertDocente(nome, cognome, cf);
+		
 		} else if (funzione.equals("modifica")) {
 
 			DocenteDTO doc = new DocenteDTO();
@@ -42,6 +45,27 @@ public class DocenteServlet extends HttpServlet {
 			doc.setCf("hfhdhehf");
 			docenteejb.updateDocente(doc);
 
+		} else if (funzione.equals("cercaid")) {
+			
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			DocenteDTO doc = docenteejb.selectDocenteById(id);
+			
+			request.setAttribute("docente", doc);
+			
+		} else if (funzione.equals("cercaall")) {
+			
+			ArrayList<DocenteDTO> docList = docenteejb.selectAllDocente(); 
+			
+			request.setAttribute("docente", docList);
+			
+		} else if (funzione.equals("cercacf")) {
+			
+			String cf = request.getParameter("cf");
+			
+			DocenteDTO doc = docenteejb.selectDocenteByCf(cf);
+			
+			request.setAttribute("docente", doc);
 		}
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());

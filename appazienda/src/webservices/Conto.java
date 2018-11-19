@@ -8,7 +8,10 @@
 package webservices;
 
 public class Conto  implements java.io.Serializable {
-    private java.lang.String datain;
+    
+	private static final long serialVersionUID = 1L;
+
+	private java.lang.String datain;
 
     private int idconto;
 

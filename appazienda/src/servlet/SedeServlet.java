@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +47,28 @@ public class SedeServlet extends HttpServlet {
 			sed.setCitta(request.getParameter("citta"));
 			sedeejb.updateSede(sed);
 			
-		}	
+		}	else if (funzione.equals("cercaall")) {
+			
+			ArrayList<SedeDTO> sedList = sedeejb.selectAllSede();	
+			
+			request.setAttribute("sedeList", sedList);
+			
+		}  else if (funzione.equals("cercanome")) {
+			
+			String nome = request.getParameter("nome");
+		
+			ArrayList<SedeDTO> sedList = sedeejb.selectSedeByNome(nome);
+			
+			request.setAttribute("sedeList", sedList);
+			
+		} else if (funzione.equals("cercaid")) {
+			
+			int id = Integer.parseInt(request.getParameter("nome"));
+			
+			SedeDTO sed = sedeejb.selectSedeById(id);
+			
+			request.setAttribute("sede", sed);
+		}
 		
 		
 		

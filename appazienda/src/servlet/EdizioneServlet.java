@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +14,6 @@ import dto.EdizioneDTO;
 
 import ejbInterfaces.EdizioneejbRemote;
 import utiliy.Util;
-
 
 @WebServlet("/EdizioneServlet")
 public class EdizioneServlet extends HttpServlet {
@@ -59,32 +60,40 @@ public class EdizioneServlet extends HttpServlet {
 
 				}
 			}
-		}
-		else if (funzione.equals("modifica")) {
-			
+		} else if (funzione.equals("modifica")) {
+
 			String id_str = request.getParameter("id");
 			String idDocente_str = request.getParameter("iddocente");
 			String idSede_str = request.getParameter("idsede");
 			java.sql.Date dataIn = Util.stringToDate(request.getParameter("datain"));
 			java.sql.Date dataFin = Util.stringToDate(request.getParameter("datafin"));
-			
-			if (id_str != null && idDocente_str != null && idSede_str != null && dataIn != null
-					&& dataFin != null) {
+
+			if (id_str != null && idDocente_str != null && idSede_str != null && dataIn != null && dataFin != null) {
 				try {
 					int id = Integer.parseInt(id_str);
 					int idDocente = Integer.parseInt(idDocente_str);
 					int idSede = Integer.parseInt(idSede_str);
-					
-			
-					
-				edizejb.updateEdizione(id, idSede, idDocente, dataIn, dataFin);	
-				
-				}catch (NumberFormatException e) {
-					
+
+					edizejb.updateEdizione(id, idSede, idDocente, dataIn, dataFin);
+
+				} catch (NumberFormatException e) {
+
 				}
-				
+
+			}
+		} else if (funzione.equals("cercaall")) {
 			
-		}
+			ArrayList<EdizioneDTO> edList = edizejb.selectAllEdizione();
+			
+			request.setAttribute("edizione", edList);
+			
+		} else if (funzione.equals("cercaid")) {
+			
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			EdizioneDTO ed = edizejb.selectEdizioneById(id);
+			
+			request.setAttribute("edizione", ed);
 		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

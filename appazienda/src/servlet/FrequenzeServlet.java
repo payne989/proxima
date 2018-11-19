@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -52,7 +53,24 @@ public class FrequenzeServlet extends HttpServlet {
 
 				}
 			}
+		} else if (funzione.equals("cercaall")) {
+			
+			ArrayList<FrequenzeDTO> freqList =freqejb.selectAllFrequenze();
+			
+			request.setAttribute("frequenze", freqList);
+			
+		} else if (funzione.equals("cercaid")) {
+			
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			FrequenzeDTO freq = freqejb.selectFrequenzeById(id);
+			
+			request.setAttribute("frequenze", freq);
 		}
+		
+		
+		
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

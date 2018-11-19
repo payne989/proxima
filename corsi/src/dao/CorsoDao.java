@@ -80,6 +80,7 @@ public class CorsoDao {
 	public ArrayList<Corso> selectCorsoByNome(String nome) {
 
 		TypedQuery<Corso> qry = em.createQuery("SELECT cor FROM CORSO cor WHERE cor.nome LIKE :nome", Corso.class);
+		
 		qry.setParameter("nome","%"+ nome + "%");
 
 		return new ArrayList<Corso>(qry.getResultList());
