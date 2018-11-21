@@ -24,7 +24,7 @@ public class Sede implements Serializable {
 	private String nomesede;
 
 	//bi-directional many-to-one association to Edizione
-	@OneToMany(mappedBy="sede")
+	@OneToMany(mappedBy="sede", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Edizione> ediziones;
 
 	public Sede() {

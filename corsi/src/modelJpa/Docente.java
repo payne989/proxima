@@ -24,7 +24,7 @@ public class Docente implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Edizione
-	@OneToMany(mappedBy="docente")
+	@OneToMany(mappedBy="docente",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Edizione> ediziones;
 
 	public Docente() {

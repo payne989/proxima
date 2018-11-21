@@ -12,7 +12,7 @@ public interface CorsoejbLocal {
 	
 	public boolean insertCorso (String nome);
 	
-	public boolean deleteCorso(int id);
+	public boolean deleteCorsoByID(int id);
 	
 	public boolean updateCorso(CorsoDTO corso);
 	 

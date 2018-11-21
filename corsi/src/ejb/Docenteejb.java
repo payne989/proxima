@@ -37,9 +37,11 @@ import utility.Converter;
     	return true;
     }
 
-    public boolean deleteDocente (int id) {
+    public boolean deleteDocenteByID (int id) {
     	
-    	return DocenteDao.deleteDocente(id);
+    	DocenteDao ddao = new DocenteDao (em);
+    	
+    	return ddao.deleteDocenteByID(id);
     }
     
     public boolean updateDocente(DocenteDTO docente) {

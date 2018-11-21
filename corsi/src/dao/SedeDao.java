@@ -1,13 +1,9 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
 import modelJpa.Sede;
 
 public class SedeDao {
@@ -36,31 +32,13 @@ public class SedeDao {
 
 	}
 
-	public static boolean deleteSede(int id) {
+	public boolean deleteSedeByID(int id) {
 
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			FrequenzeDao.deleteFrequenzeBySede(id);
+		Sede sedRes = em.find(Sede.class, id);
 		
-			EdizioneDao.deleteEdizioneByIdSede(id);
-						
-			java.sql.PreparedStatement preparedStatement = null;
+		em.remove(sedRes);
 
-			String insertTableSQL = "DELETE FROM sede WHERE id = ?";
-			
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, id);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+		return true;
 	}
 
 	public boolean updateSede(Sede sed) {

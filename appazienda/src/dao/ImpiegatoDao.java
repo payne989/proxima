@@ -158,6 +158,44 @@ public class ImpiegatoDao {
 		}
 		return impList;
 	}
+
+	public static ArrayList<Impiegato> researchAll() {
+
+		ArrayList<Impiegato> impList = new ArrayList<Impiegato>();
+
+		try {
+			// metodo connection importato dalla classe DBconnection
+			Connection con = DBconnection.createConnection();
+
+			String qry = "SELECT * FROM impiegato";
+
+			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
+
+
+			ResultSet res = preparedStatement.executeQuery();
+
+			while (res.next()) {
+
+				Impiegato impie = new Impiegato();
+
+				impie.setId(res.getInt("id"));
+				impie.setCodFisc(res.getString("codfisc"));
+				impie.setNome(res.getString("nome"));
+				impie.setCognome(res.getString("cognome"));
+
+				impList.add(impie);
+				System.out.println(impie);
+				
+			}
+			
+		} catch (Exception e) {
+			
+			System.err.println("errore");
+
+			e.printStackTrace();
+		}
+		return impList;
+	}
 	
 	public static void update(int idImpiegato, String codfisc, String nome, String cognome) throws SQLException {
 

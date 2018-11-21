@@ -18,12 +18,14 @@
 	</nav>
 
 	<form action="ImpiegatoServlet" method="get">
+	<input type="hidden" value="cercaall">
 		<%
 			ArrayList<Impiegato> impList = (ArrayList<Impiegato>) request.getAttribute("impiegato");
 		%>
 
 		<table class="table table-striped">
-<thead class="thead-dark">
+	<thead class="thead-dark">
+			
 
 			<tr>
 				<th scope="col">Id</th>
@@ -37,7 +39,7 @@
 				for (Impiegato i : impList) {
 			%>
 			<tr>
-				
+		
 				<td><%=i.getId()%></td>
 				<td><%=i.getCodFisc()%></td>
 				<td><%=i.getNome()%></td>

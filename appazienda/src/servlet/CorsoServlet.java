@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.CorsoDTO;
 import ejbInterfaces.CorsoejbRemote;
-import modelJpa.Corso;
+
 
 @WebServlet("/CorsoServlet")
 public class CorsoServlet extends HttpServlet {
@@ -67,6 +67,7 @@ public class CorsoServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

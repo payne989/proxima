@@ -35,9 +35,13 @@ public class Corsoejb implements CorsoejbRemote, CorsoejbLocal {
 		return true;
 	}
 
-	public boolean deleteCorso(int id) {
+	public boolean deleteCorsoByID(int id) {
 
-		return CorsoDao.deleteCorso(id);
+		CorsoDao cdao = new CorsoDao(em);
+
+		cdao.deleteCorsoByID(id);
+
+		return true;
 
 	}
 

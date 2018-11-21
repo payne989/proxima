@@ -24,6 +24,7 @@ public class ImpiegatoServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String funzione = request.getParameter("funzione");
+		System.out.println("ciao");
 		try {
 			if (funzione.equals("inserisci")) {
 
@@ -76,10 +77,17 @@ public class ImpiegatoServlet extends HttpServlet {
 
 				request.getRequestDispatcher("risultatoCercaMultipla.jsp").forward(request, response);
 
+			}else if (funzione.equals("cercaall")) {
+								
+				ArrayList<Impiegato> impList = ImpiegatoDao.researchAll();
+
+				request.setAttribute("impiegato", impList);
+
+				request.getRequestDispatcher("listaImpiegati.jsp").forward(request, response);
 			}
 
 			else if (funzione.equals("cancella")) {
-
+				
 				int id = Integer.parseInt(request.getParameter("id"));
 				try {
 					ImpiegatoDao.delete(id);

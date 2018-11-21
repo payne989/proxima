@@ -40,7 +40,7 @@ public class Edizione implements Serializable {
 	private Sede sede;
 
 	//bi-directional many-to-one association to Frequenze
-	@OneToMany(mappedBy="edizione")
+	@OneToMany(mappedBy="edizione",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Frequenze> frequenzes;
 
 	public Edizione() {

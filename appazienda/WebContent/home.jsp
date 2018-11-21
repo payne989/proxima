@@ -9,22 +9,56 @@
     <title>Home</title>
      <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body>	
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="home.jsp">Proxima Informatica</a>
 </nav>	
     <form action="ImpiegatoServlet" method="get">
 
-		<h1>App Aziendale Proxima Academy</h1>
-		<br> <br><a
-			href="http://localhost:8080/appazienda/ruoloInsert.jsp">
-			Inserisci Nuovo Ruolo</a> <br> <a
-			href="http://localhost:8080/appazienda/impiegatoSearch.jsp">
-			Cerca Impiegato</a> <br> <a
-			href="http://localhost:8080/appazienda/cancellaImpiegato.jsp">
-			Cancella Impiegato</a> <br> 
+		<h1>App Aziendale Proxima Academy</h1> <br>
+		<div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Anagrafica</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Operazioni Anagrafiche</li>
+              <li>Operazioni Impiegato</li>
+              <li>Operazioni Ruolo</li>
+            </ul>
+            <a type="button" class="btn btn-dark btn-lg" href="anagrafica.jsp" >Entra</a>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">E-Wallet</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Operazioni di Online Banking</li>
+              <li>Bonifici</li>
+              <li>Lista Movimenti</li>
+            </ul>
+            <a type="button" class="btn btn-dark btn-lg" href="ewallet.jsp" >Entra</a>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">E-Learning</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Gestione Docenti</li>
+              <li>Gestione Sedi</li>
+              <li>Operazioni Frequenze</li>
+            </ul>
+            <a type="button" class="btn btn-dark btn-lg" href="elearning.jsp" >Entra</a>
+          </div>
+        </div>
+      </div>
 
-			<a class="btn btn-dark"	href="impiegatoInsert.jsp">Inserisci Impiegato</a>
+			
 
 	</form>
 

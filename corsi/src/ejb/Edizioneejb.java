@@ -40,26 +40,16 @@ public class Edizioneejb implements EdizioneejbRemote, EdizioneejbLocal {
     	
     }
     
-    public boolean deleteEdizioneById(int id){
+    public boolean deleteEdizioneByID(int id) {
     	
-    	return EdizioneDao.deleteEdizioneById(id);
-    }
-    
-    public boolean deleteEdizioneByIdSede (int idSede) {
+    	EdizioneDao eddao = new EdizioneDao(em);
     	
-    	return EdizioneDao.deleteEdizioneByIdSede(idSede);
-    }
-
-    public boolean deleteEdizioneByIdDocente (int idDocente) {
+    	eddao.deleteEdizioneByID(id);
     	
-    	return EdizioneDao.deleteEdizioneByIdDocente(idDocente);
-    }
-
-    public boolean deleteEdizioneByIdCorso (int idCorso) {
+    	return true;
     	
-    	return EdizioneDao.deleteEdizioneByIdCorso(idCorso);
     }
-
+   
     public boolean updateEdizione(int id, int idSede, int idDocente, Date dataIn, Date dataFin) {
 		
     	EdizioneDao eddao = new EdizioneDao(em);
@@ -72,11 +62,15 @@ public class Edizioneejb implements EdizioneejbRemote, EdizioneejbLocal {
 
     public EdizioneDTO selectEdizioneById (int id) {
     	
-    	return Converter.convertEdizione(EdizioneDao.selectEdizioneById(id));
+    	EdizioneDao eddao =new EdizioneDao (em);
+    	
+    	return Converter.convertEdizioneJPA( eddao.selectEdizioneById(id));
     }
 
     public ArrayList<EdizioneDTO> selectAllEdizione() {
     	
-    	return Converter.convertEdizioneList(EdizioneDao.selectAllEdizione());
+    	EdizioneDao eddao =new EdizioneDao (em);
+    	
+    	return Converter.convertEdizioneJPAList(eddao.selectAllEdizione());
     }
 }

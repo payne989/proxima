@@ -36,9 +36,11 @@ import utility.Converter;
 		return true;
 	}
 
-	public boolean deleteSede(int id) {
+	public boolean deleteSedeByID(int id) {
 
-		return SedeDao.deleteSede(id);
+		SedeDao sdao = new SedeDao(em);
+		
+		return sdao.deleteSedeByID(id);
 	}
 
 	public boolean updateSede(SedeDTO sede) {

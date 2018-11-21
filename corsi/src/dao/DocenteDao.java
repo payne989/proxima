@@ -1,13 +1,9 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
 import modelJpa.Docente;
 
 public class DocenteDao {
@@ -35,31 +31,13 @@ public class DocenteDao {
 		return true;
 	}
 
-	public static boolean deleteDocente(int id) {
+	public boolean deleteDocenteByID(int id) {
 
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
+		Docente docRes = em.find(Docente.class, id);
+		
+		em.remove(docRes);
 
-			EdizioneDao.deleteEdizioneByIdDocente(id);
-
-			FrequenzeDao.deleteFrequenzeByDocente(id);
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "DELETE FROM docente WHERE id=?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, id);
-
-			preparedStatement.executeUpdate();
-
-			return true;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+		return true;
 
 	}
 

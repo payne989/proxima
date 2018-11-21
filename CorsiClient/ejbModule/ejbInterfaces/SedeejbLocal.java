@@ -10,7 +10,7 @@ public interface SedeejbLocal {
 
 	public boolean insertSede(String nomeSede, String indirizzo, String citta);
 	
-	public boolean deleteSede (int id);
+	public boolean deleteSedeByID (int id);
 	
 	public boolean updateSede(SedeDTO sede);;
 	

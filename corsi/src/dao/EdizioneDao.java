@@ -1,18 +1,11 @@
  package dao;
 
-import java.sql.Connection;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-import model.Edizione;
+import javax.persistence.TypedQuery;
+import modelJpa.Edizione;
 import modelJpa.Corso;
 import modelJpa.Docente;
 import modelJpa.Sede;
@@ -30,111 +23,13 @@ public class EdizioneDao {
 		super();
 	}
 
-	public static boolean deleteEdizioneById(int id) {
+	public boolean deleteEdizioneByID (int id) {
+		
+		Edizione edRes = em.find(Edizione.class, id);
+		em.remove(edRes);
 
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			FrequenzeDao.deleteFrequenzeById(id);
-			
-			String insertTableSQL = "DELETE FROM edizione WHERE id=?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, id);
-
-			preparedStatement.executeUpdate();
-
-			System.out.println("Corso cancellato con successo");
-			return true;
-
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-
-	}
-	
-	public static boolean deleteEdizioneByIdSede(int idSede) {
-
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "DELETE FROM edizione WHERE idsede=?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, idSede);
-
-			preparedStatement.executeUpdate();
-
-			System.out.println("Corso cancellato con successo");
-			return true;
-
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-
-	}
-
-	public static boolean deleteEdizioneByIdCorso(int idCorso) {
-
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "DELETE FROM edizione WHERE idcorso=?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, idCorso);
-
-			preparedStatement.executeUpdate();
-
-			System.out.println("Edizione cancellata con successo");
-			return true;
-
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-
-	}
-	
-	public static boolean deleteEdizioneByIdDocente(int idDocente) {
-
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			java.sql.PreparedStatement preparedStatement = null;
-
-			String insertTableSQL = "DELETE FROM edizione WHERE iddocente=?";
-
-			preparedStatement = con.prepareStatement(insertTableSQL);
-
-			preparedStatement.setInt(1, idDocente);
-
-			preparedStatement.executeUpdate();
-
-			System.out.println("Corso cancellato con successo");
-			return true;
-
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-
-	}
+		return true;
+	} 
 	
 	public boolean updateEdizione(int id, int idSede, int idDocente, Date dataIn, Date dataFin) {
 
@@ -184,79 +79,26 @@ public class EdizioneDao {
 		return true;
 	} 
 
-	public static Edizione selectEdizioneById(int id) {
-
-		Edizione ed = new Edizione();
+	public Edizione selectEdizioneById(int id) {
 
 		try {
-
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			String qry = "SELECT * FROM edizione WHERE id=?";
-
-			PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-
-			preparedStatement.setInt(1, id);
-
-			ResultSet res = preparedStatement.executeQuery();
-
-			if (res.next()) {
-				ed.setId(id);
-				ed.setIdCorso(res.getInt("idcorso"));
-				ed.setIdSede(res.getInt("idsede"));
-				ed.setIdDocente(res.getInt("iddocente"));
-				ed.setDataIn(res.getDate("datain"));
-				ed.setDataFin(res.getDate("datafin"));
-
-				System.out.println(ed);
-
-			}
-
+			return em.find(Edizione.class, id);
 		} catch (Exception e) {
-			System.err.println("errore");
 
-			e.printStackTrace();
-		}
-		return ed;
-
-	}
-
-	public static ArrayList<Edizione> selectAllEdizione()  {
-
-		try {
-			Connection con = ((DataSource) new InitialContext().lookup("java:jboss/datasources/corsi")).getConnection();
-
-			ArrayList<Edizione> edizList = new ArrayList<Edizione>();
-
-			
-				String qry = "SELECT * FROM edizione";
-
-				PreparedStatement preparedStatement = (PreparedStatement) con.prepareStatement(qry);
-				
-				ResultSet res = preparedStatement.executeQuery();
-
-				while (res.next()) {
-
-					Edizione ediz = new Edizione();
-
-					ediz.setId(res.getInt("id"));
-					ediz.setIdCorso(res.getInt("idcorso"));
-					ediz.setIdSede(res.getInt("idsede"));
-					ediz.setIdDocente(res.getInt("idDocente"));
-					edizList.add(ediz);
-
-					System.out.println(ediz);
-
-}
-				return edizList;
-		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+
 	}
 
+	public ArrayList<Edizione> selectAllEdizione()  {
 
+		TypedQuery<Edizione> qry = em.createQuery("SELECT ed FROM EDIZIONE ed ", Edizione.class);
+		
+
+		return new ArrayList<Edizione>(qry.getResultList());
+
+	}
 
 
 }

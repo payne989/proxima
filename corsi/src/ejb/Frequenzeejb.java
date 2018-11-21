@@ -33,33 +33,27 @@ public class Frequenzeejb implements FrequenzeejbRemote, FrequenzeejbLocal {
     	return fdao.insertFrequenze(idImp, idEdiz);
     }
     
-    public boolean deleteFrequenzeById (int id) {
+    public boolean deleteFrequenzeByID (int id) {
     	
-    	return FrequenzeDao.deleteFrequenzeById(id);
-    }
-    
-    public boolean deleteFrequenzeByIdSede (int idSede){
-    	return FrequenzeDao.deleteFrequenzeBySede(idSede);
-    }		
-    
-    public boolean deleteFrequenzeByIdCorso (int idCorso) {
+    	FrequenzeDao freqdao = new FrequenzeDao(em);
     	
-    	return FrequenzeDao.deleteFrequenzeByCorso(idCorso);
-    }
-    
-    public boolean deleteFrequenzeByIdDocente (int idDocente) {
+    	freqdao.deleteFrequenze(id);
     	
-    	return FrequenzeDao.deleteFrequenzeByDocente(idDocente);
+    	return true;
     }
     
     public FrequenzeDTO selectFrequenzeById (int id) {
     	
-    	return Converter.convertFrequenze(FrequenzeDao.selectFrequenzeById(id));
+    	FrequenzeDao freqDao = new FrequenzeDao(em);
+    	
+    	return Converter.convertFrequenzeJPA(freqDao.selectFrequenzeById(id));
     }
     
     public ArrayList<FrequenzeDTO> selectAllFrequenze() {
     	
-    	return Converter.convertFrequenzeList(FrequenzeDao.selectAllFrequenze());
+    	FrequenzeDao freqDao = new FrequenzeDao(em);
+    	
+    	return Converter.convertFrequenzeJPAList(freqDao.selectAllFrequenze());
     }
     
     

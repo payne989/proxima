@@ -11,7 +11,7 @@ public interface DocenteejbRemote {
 
 	public boolean insertDocente (String nome, String cognome, String cf);
 	
-	public boolean deleteDocente (int id);
+	public boolean deleteDocenteByID (int id);
 	
 	public boolean updateDocente(DocenteDTO docente);
 	

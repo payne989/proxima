@@ -20,7 +20,7 @@ public class Corso implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Edizione
-	@OneToMany(mappedBy="corso")
+	@OneToMany(mappedBy="corso", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Edizione> ediziones;
 
 	public Corso() {

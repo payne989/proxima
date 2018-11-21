@@ -11,14 +11,8 @@ public interface FrequenzeejbLocal {
 
 	public boolean insertFrequenze (FrequenzeDTO freq);
 	
-	public boolean deleteFrequenzeById (int id);
-	
-	public boolean deleteFrequenzeByIdSede (int idSede);
-	
-	public boolean deleteFrequenzeByIdCorso (int idCorso);
-	
-	public boolean deleteFrequenzeByIdDocente (int idDocente);
-	
+	public boolean deleteFrequenzeByID (int id);
+
 	public FrequenzeDTO selectFrequenzeById (int id);
 	
 	public ArrayList<FrequenzeDTO> selectAllFrequenze();
